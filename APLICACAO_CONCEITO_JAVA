@@ -1,0 +1,64 @@
+import java.util.Scanner;
+
+public class Desafio {
+    public static void main(String[] args){
+        Scanner scanner = new Scanner(System.in);
+
+        String nome = "Leticia";
+        String tipoConta = "Corrente";
+        double saldoInicial = 100;
+        double saldoAcrescentado = 0;
+        double saldoRetirado = 0;
+        double saldoFinal = saldoInicial;
+        boolean continuar = true;
+
+        System.out.println("Nome: " + nome);
+        System.out.println("Tipo da Conta: " + tipoConta);
+        System.out.println("Saldo inicial: " + saldoInicial);
+
+        while(continuar) {
+            System.out.println("\n Operacoes");
+            System.out.println("1 - Consultar Saldos");
+            System.out.println("2- Receber Valor");
+            System.out.println("3- Transferencia de Valor");
+            System.out.println("4- Sair");
+
+            int escolha = scanner.nextInt();
+
+            switch(escolha){
+                case 1:
+                    System.out.println(saldoFinal);
+                    break;
+
+                case 2:
+                    System.out.println("Digite o valor a receber: ");
+
+                    do {
+                        saldoAcrescentado = scanner.nextDouble();
+                    } while (saldoAcrescentado < 0);
+
+                    saldoFinal += saldoAcrescentado;
+                    break;
+
+                case 3:
+                    System.out.println("Digite o valor a transferir: ");
+
+                    do{
+                        saldoRetirado = scanner.nextDouble();
+                    } while (saldoRetirado > saldoFinal);
+
+                    saldoFinal -= saldoRetirado;
+                    break;
+
+                case 4:
+                    continuar = false;
+                    break;
+
+                default:
+                    System.out.println("opcao invalida");
+            }
+        }
+
+        scanner.close();
+    }
+}
